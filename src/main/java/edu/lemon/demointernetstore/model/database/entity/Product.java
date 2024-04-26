@@ -1,4 +1,4 @@
-package edu.lemon.demointernetstore.database.model;
+package edu.lemon.demointernetstore.model.database.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

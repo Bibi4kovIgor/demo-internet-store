@@ -1,4 +1,4 @@
-package edu.lemon.demointernetstore.web.dto;
+package edu.lemon.demointernetstore.view.web.dto;
 
 public record User(String name, String greeting) {
   @Override

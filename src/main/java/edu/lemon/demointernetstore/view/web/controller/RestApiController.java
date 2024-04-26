@@ -1,6 +1,6 @@
-package edu.lemon.demointernetstore.controller;
+package edu.lemon.demointernetstore.view.web.controller;
 
-import edu.lemon.demointernetstore.web.dto.User;
+import edu.lemon.demointernetstore.view.web.dto.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
