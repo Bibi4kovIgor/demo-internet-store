@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>Products List</title>
 </head>
 <body>
+  <section layout:fragment="content">
     <div class="container" id="container">
         <div id="products-list" th:if="${#lists.size(products) == 0}">
             <h2>There are no products added yet</h2>
@@ -30,5 +33,6 @@
             </tbody>
         </table>
     </div>
+  </section>
 </body>
 </html>

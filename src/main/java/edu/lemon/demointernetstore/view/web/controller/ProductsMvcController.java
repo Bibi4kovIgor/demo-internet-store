@@ -4,7 +4,6 @@ import edu.lemon.demointernetstore.controller.service.impl.ProductService;
 import edu.lemon.demointernetstore.view.web.dto.ProductDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,16 +14,17 @@ import java.util.List;
 import java.util.Objects;
 
 
-@Controller("SpringMvcController")
+@Controller
 @RequestMapping("/internet-store")
-public class SpringMvcController {
+public class ProductsMvcController {
 
   @Autowired
   private ProductService productService;
 
   @GetMapping
-  public String greetings(){
-    return "/index";
+  public ModelAndView greetings(){
+    ModelMap products = new ModelMap().addAttribute("products", List.of(ProductDto.builder().build()));
+    return new ModelAndView("pages/products", products);
   }
 
   @GetMapping({"/get-products-by-qty/{qty}", "/get-products-by-qty"})
@@ -33,7 +33,7 @@ public class SpringMvcController {
     qty = Objects.isNull(qty) ? 0 : qty;
     List<ProductDto> productsList = productService.getByQuantity(qty);
     ModelMap products = new ModelMap().addAttribute("products", productsList);
-    return new ModelAndView("/products", products);
+    return new ModelAndView("pages/products", products);
 
   }
 
