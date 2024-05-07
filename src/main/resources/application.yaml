@@ -2,6 +2,18 @@ server:
   port: 8091
 
 spring:
+  profiles:
+    active:
+      - dev
+
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+  jooq:
+    sql-dialect: org.hibernate.dialect.PostgreSQLDialect

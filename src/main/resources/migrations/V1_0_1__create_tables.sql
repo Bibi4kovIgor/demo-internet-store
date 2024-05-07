@@ -2,7 +2,7 @@ create table if not exists products (
     id serial,
     name varchar not null,
     vendor_code varchar unique not null,
-    quantity double precision DEFAULT 1.0,
+    quantity integer DEFAULT 1.0,
     price numeric not null,
     description varchar,
     primary key (id)
