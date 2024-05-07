@@ -8,7 +8,7 @@
     <title>Products List</title>
 </head>
 <body>
-  <section layout:fragment="content">
+<section layout:fragment="content">
     <div class="container" id="container">
         <div id="products-list" th:if="${#lists.size(products) == 0}">
             <h2>There are no products added yet</h2>
@@ -21,18 +21,94 @@
                 <th scope="col">Description</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
-            <tbody th:each="product : ${products}">
+            <tbody th:each="products : ${products}">
             <tr>
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.description}"></td>
-                <td th:text="${product.quantity}"></td>
-                <td th:text="${product.price}"></td>
+                <td th:text="${products.name}"></td>
+                <td th:text="${products.description}"></td>
+                <td th:text="${products.quantity}"></td>
+                <td th:text="${products.price}"></td>
+                <td>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#products-form">Edit products
+                    </button>
+                    <button type="button"
+                            class="btn btn-primary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#products-form">Remove products
+                    </button>
+                </td>
             </tr>
             </tbody>
         </table>
+        <div>
+            <button type="button"
+                class="btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#products-form">Add products
+            </button>
+        </div>
+        <div class="modal fade"
+             id="products-form"
+             tabindex="-1"
+             aria-labelledby="products-form-label"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="products-form-label">New products</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form th:action="@{/add-products}"
+                              th:object="${productType}"
+                              method="post"
+                              class="row g-3 needs-validation">
+                            <div class="col-md-3">
+                                <label for="name" class="form-label">Title</label>
+                                <input type="text" th:field="*{name}" placeholder="Title" class="form-control">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="text" th:field="*{quantity}" placeholder="Quantity" class="form-control">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+
+                            </div>
+                            <div class="col-md-3">
+                                <label for="price" class="form-label">Price</label>
+                                <input type="text" th:field="*{price}" placeholder="Price" class="form-control">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea th:field="*{description}"
+                                          placeholder="Product description"
+                                          rows="3" class="form-control"></textarea>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="col-auto">
+                                    <span><input type="submit" value="save" class="btn btn-primary mb-2"></span>
+                                    <span><input type="reset" value="cancel" class="btn btn-primary mb-2"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </section>
+</section>
 </body>
 </html>

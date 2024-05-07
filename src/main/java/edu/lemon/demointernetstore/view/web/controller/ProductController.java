@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/product")
+@RequestMapping("/api/v1/products")
 public class ProductController {
   private final CrudService<ProductDto, Long> service;
 
-  public ProductController(@Qualifier("ProductService") CrudService<ProductDto, Long> service) {
-    this.service = service;
+  public ProductController(
+      @Qualifier("ProductService") CrudService<ProductDto, Long> productsService) {
+    this.service = productsService;
   }
 
   @GetMapping

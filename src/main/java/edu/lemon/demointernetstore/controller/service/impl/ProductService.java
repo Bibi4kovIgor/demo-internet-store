@@ -1,7 +1,7 @@
 package edu.lemon.demointernetstore.controller.service.impl;
 
 import edu.lemon.demointernetstore.controller.service.CrudService;
-import edu.lemon.demointernetstore.model.database.entity.Product;
+import edu.lemon.demointernetstore.model.database.entity.Products;
 import edu.lemon.demointernetstore.model.mapper.ProductMapper;
 import edu.lemon.demointernetstore.model.repository.ProductRepository;
 
@@ -18,9 +18,10 @@ public class ProductService implements CrudService<ProductDto, Long> {
   private final ProductMapper productMapper;
 
   @Override
-  public ProductDto create(ProductDto object) {
-    return productMapper.toDto(productRepository
-        .save(productMapper.fromDto(object)));
+  public ProductDto create(ProductDto productDto) {
+    Products products = productMapper.fromDto(productDto);
+    products = productRepository.save(products);
+    return productMapper.toDto(products);
   }
 
   @Override
