@@ -12,3 +12,4 @@
 - ReactJS
 - Docker
 - Docker compose
+## Instructions to config docker/docker compose you are able to obtain by this [link](https://gist.github.com/Bibi4kovIgor/7d3d1fc9c3e023b940254413a64dc592)
