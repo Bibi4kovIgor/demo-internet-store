@@ -12,3 +12,14 @@
 - ReactJS
 - Docker
 - Docker compose
+
+### Step 2 ###
+### **Brunch** <code> feature/frontend-react: </code> add react and vite into project with configs </code>  ###
+# How to launch this app #
+1. Install yarn from this link: [install yarn](https://classic.yarnpkg.com/en/docs/getting-started)
+2. Install all dependant files (satisfy all dependencies, which set in `package.json` file) </br>
+``` yarn install ```
+3. Build application within <code> vite.config.js </code> instructions <br/>
+``` yarn build ```
+4. Launch frontend application within `vite js` <br/>
+``` yarn dev ```
