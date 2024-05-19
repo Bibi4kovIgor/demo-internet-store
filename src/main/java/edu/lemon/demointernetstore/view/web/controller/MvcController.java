@@ -8,14 +8,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Objects;
 
-
 @Controller
+@RequestMapping("/admin")
 public class MvcController {
 
   private final CrudService<ProductDto, Long> service;
@@ -31,12 +32,6 @@ public class MvcController {
         .addAttribute("productType", ProductDto.builder().build());
     return new ModelAndView("pages/products", products);
   }
-
-  @GetMapping("/products")
-  public String loadProducts(){
-    return "pages/products_dynamic";
-  }
-
   @GetMapping({"/get-products-by-qty/{qty}", "/get-products-by-qty"})
   public ModelAndView getProductsByQty(
       @PathVariable(name = "qty", required = false) Integer qty){

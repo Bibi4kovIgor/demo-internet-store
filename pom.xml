@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>edu.lemon</groupId>
 	<artifactId>demo-internet-store</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>demo-internet-store</name>
 	<description>Demo project: internet store web application</description>
 	<properties>
@@ -41,6 +41,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
 
         <dependency>
@@ -87,6 +99,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+                    <finalName>demo-internetstore</finalName>
+                    <outputDirectory>${project.basedir}/docker/dockerfiles/jar</outputDirectory>
+                    <profiles>
+                        <profile>prod</profile>
+                    </profiles>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>

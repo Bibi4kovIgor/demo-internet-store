@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/v1/internet-store")
-public class RestApiController {
+public class GreetRestApiController {
 
   @GetMapping({"/", "/{name}"})
   public String greet(

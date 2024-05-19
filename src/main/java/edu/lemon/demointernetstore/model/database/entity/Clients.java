@@ -2,8 +2,10 @@ package edu.lemon.demointernetstore.model.database.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +15,7 @@ import java.time.Instant;
 @Table(name = "clients")
 public class Clients {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
 
@@ -44,4 +46,13 @@ public class Clients {
   @JoinColumn(name = "document_id",
       referencedColumnName = "id")
   @NonNull private Documents document;
+
+
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinTable(
+      name = "client_role",
+      joinColumns = @JoinColumn(name = "client_id"),
+      inverseJoinColumns = @JoinColumn(name = "role"))
+  @BatchSize(size = 20)
+  private List<User> users;
 }

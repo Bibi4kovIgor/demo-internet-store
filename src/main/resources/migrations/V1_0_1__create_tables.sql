@@ -1,5 +1,5 @@
 create table if not exists products (
-    id serial,
+    id bigserial,
     name varchar not null,
     vendor_code varchar unique not null,
     quantity integer DEFAULT 1.0,
@@ -9,15 +9,15 @@ create table if not exists products (
 );
 
 create table if not exists categories (
-    id serial,
+    id bigserial,
     name varchar not null,
     description varchar not null,
     primary key (id)
 );
 
 create table if not exists products_categories (
-    category_id serial not null,
-    product_id serial not null,
+    category_id bigserial not null,
+    product_id bigserial not null,
     primary key (category_id, product_id),
     foreign key(category_id) references categories(id),
     foreign key(product_id) references products(id)
@@ -27,7 +27,7 @@ CREATE INDEX products_categories_category_idx ON products_categories (category_i
 CREATE INDEX products_categories_product_idx ON products_categories (product_id);
 
 create table if not exists documents (
-   id serial,
+   id bigserial,
    tax_id bigint unique not null,
    passport varchar not null,
    additional_info varchar,
@@ -35,7 +35,7 @@ create table if not exists documents (
 );
 
 create table if not exists clients (
-    id serial,
+    id bigserial,
     first_name varchar not null,
     last_name varchar not null,
     phone varchar not null,
@@ -47,7 +47,7 @@ create table if not exists clients (
     login varchar not null,
     email varchar not null,
     password varchar not null,
-    document_id serial,
+    document_id bigserial,
     primary key (id),
     foreign key(document_id) references documents(id)
 );
@@ -55,8 +55,8 @@ create table if not exists clients (
 CREATE INDEX clients_document_idx ON clients (document_id);
 
 create table if not exists orders (
-    client_id serial,
-    product_id serial,
+    client_id bigserial,
+    product_id bigserial,
     quantity integer DEFAULT 1,
     order_date timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
     primary key (client_id, product_id, order_date),

@@ -18,6 +18,7 @@
             <thead>
             <tr>
                 <th scope="col">Product Name</th>
+                <th scope="col">Vendor Code</th>
                 <th scope="col">Description</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
@@ -27,6 +28,7 @@
             <tbody th:each="products : ${products}">
             <tr>
                 <td th:text="${products.name}"></td>
+                <td th:text="${products.vendorCode}"></td>
                 <td th:text="${products.description}"></td>
                 <td th:text="${products.quantity}"></td>
                 <td th:text="${products.price}"></td>
@@ -64,13 +66,20 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form th:action="@{/add-products}"
+                        <form th:action="@{/admin/add-product}"
                               th:object="${productType}"
                               method="post"
                               class="row g-3 needs-validation">
                             <div class="col-md-3">
                                 <label for="name" class="form-label">Title</label>
                                 <input type="text" th:field="*{name}" placeholder="Title" class="form-control">
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="vendorCode" class="form-label">Vendor code</label>
+                                <input type="text" th:field="*{vendorCode}" placeholder="Vendor code" class="form-control">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>

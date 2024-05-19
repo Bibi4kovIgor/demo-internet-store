@@ -20,7 +20,7 @@ insert into products(vendor_code, name, description, price, quantity) values
 --create function for getting data from bounded tables
 CREATE OR REPLACE FUNCTION get_id_from_table(element_number integer, table_name regclass)
 RETURNS integer AS $$
-DECLARE result_id uuid;
+DECLARE result_id integer;
 BEGIN
     EXECUTE format('SELECT (SELECT id FROM %s LIMIT 1 OFFSET $1)::integer', table_name)
       INTO result_id
@@ -30,7 +30,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql IMMUTABLE;
 
- products_categories
+-- products_categories
 insert into products_categories(product_id, category_id) values
 ((SELECT * FROM get_id_from_table(0, 'products')), (SELECT * FROM get_id_from_table(0, 'categories'))),
 ((SELECT * FROM get_id_from_table(1, 'products')), (SELECT * FROM get_id_from_table(1, 'categories'))),
@@ -68,7 +68,7 @@ insert into clients(first_name, last_name, phone, birth_date, login, email, pass
 ('Mark', 'Tsuckerberg', '+1589654114', '1979-7-5'::timestamp, 'mark_meta','work_meta@gmail.com',
  crypt('password_default_445', gen_salt('bf')), (SELECT * FROM get_id_from_table(4, 'documents')));
 
- order
+-- order
 insert into orders(client_id, product_id, quantity, order_date) values
 ((SELECT get_id_from_table(0, 'clients')), (SELECT get_id_from_table(0, 'products')), 1, NOW()::timestamp),
 ((SELECT get_id_from_table(1, 'clients')), (SELECT get_id_from_table(1, 'products')), 3, NOW()::timestamp),

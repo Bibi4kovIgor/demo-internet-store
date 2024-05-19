@@ -11,7 +11,7 @@ import lombok.*;
 @Table(name = "documents")
 public class Documents {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @NonNull
   private Long id;
 

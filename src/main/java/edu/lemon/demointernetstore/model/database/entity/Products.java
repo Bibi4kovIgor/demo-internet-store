@@ -14,7 +14,7 @@ import org.hibernate.annotations.BatchSize;
 public class Products {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column(name = "name")
