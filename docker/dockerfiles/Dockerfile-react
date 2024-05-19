@@ -1,0 +1,25 @@
+FROM node:21.0.0-alpine3.18 as build
+
+ARG REACT_APP_SERVICES_HOST=/frontend
+
+WORKDIR /app
+
+COPY ./frontend /app
+
+RUN yarn install
+COPY . .
+RUN yarn build
+
+FROM nginx:1.26.0-alpine3.19
+EXPOSE 80
+WORKDIR /usr/share/nginx/html
+
+COPY ./config/nginx.conf /etc/nginx/sites-enabled/default
+#COPY ./frontend/static /usr/share/nginx/html/
+COPY --from=build /app/static/build /usr/share/nginx/html/build
+COPY --from=build /app/static/index.html /usr/share/nginx/html/index.html
+
+CMD ["nginx", "-g", "daemon off;"]
+
+
+

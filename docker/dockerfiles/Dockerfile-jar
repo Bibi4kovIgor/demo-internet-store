@@ -1,0 +1,14 @@
+FROM amazoncorretto:21-alpine3.19-jdk
+
+EXPOSE 8091
+RUN addgroup -S spring-group \
+    && adduser -S spring -G spring-group
+USER spring:spring-group
+ARG JAR_LOCAL_FILE=/jar/demo-internetstore.jar
+ENV JAR_FILE=demo-internetstore.jar
+ENV WORKDIR_PATH=/app
+WORKDIR ${WORKDIR_PATH}
+COPY ${JAR_LOCAL_FILE} ${JAR_FILE}
+RUN pwd \
+    && ls
+ENTRYPOINT java -jar ${WORKDIR_PATH}/${JAR_FILE}
